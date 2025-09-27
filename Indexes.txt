@@ -1,0 +1,21 @@
+Index Syntax:
+create index indexname on tablename(column1,column2,column3...);
+
+
+CREATE TABLE members
+(
+    member_id 	number 			PRIMARY KEY,
+    first_name 	VARCHAR2(100) 	NOT NULL,
+    last_name 	VARCHAR2(100) 	NOT NULL,
+    gender 		CHAR(1) 		NOT NULL,
+    dob 		DATE 			NOT NULL,
+    email 		VARCHAR2(255) 	NOT NULL
+);
+
+
+Creating Index
+--------------------
+create index members_firstname on members(first_name);
+
+
+create index members_lastname on members(last_name);

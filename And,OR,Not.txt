@@ -1,0 +1,63 @@
+
+CREATE TABLE products (
+    product_id NUMBER PRIMARY KEY,
+    product_name VARCHAR2(50),
+    category VARCHAR2(30),
+    price NUMBER
+);
+
+INSERT INTO products VALUES (1, 'Laptop', 'Electronics', 60000);
+INSERT INTO products VALUES (2, 'Phone', 'Electronics', 30000);
+INSERT INTO products VALUES (3, 'Shirt', 'Clothing', 1500);
+INSERT INTO products VALUES (4, 'Shoes', 'Clothing', 2500);
+INSERT INTO products VALUES (5, 'Fridge', 'Electronics', 40000);
+AND / OR / NOT (Products Table)
+
+1.Find all products that are Electronics AND price > 35000.
+A :select * from products where category='Electronics' and price>35000; 
+
+2.Find all products that are Clothing OR price < 2000.
+A: select * from products where category='Clothing' or price<2000;
+
+3.Find all products that are NOT in the category ‘Electronics’.
+A:select * from products where not category='Electronics';
+  select * from products where category<>'Electronics';
+
+4.Find all products where category = 'Clothing' AND price < 2000.
+A : select * from products where category ='Clothing' and price<2000;
+
+5.Find all products where (category = 'Electronics' OR category = 'Clothing') AND price BETWEEN 2000 AND 50000.
+A: select * from products where category='Electronics' or category='Clothing' and price between 2000 and 5000;
+
+GROUP BY / HAVING (Flights Table)
+
+CREATE TABLE flights (
+    flight_id NUMBER PRIMARY KEY,
+    airline VARCHAR2(30),
+    source VARCHAR2(30),
+    destination VARCHAR2(30),
+    price NUMBER
+);
+
+
+INSERT INTO flights VALUES (1, 'Air India', 'Delhi', 'Mumbai', 5000);
+INSERT INTO flights VALUES (2, 'IndiGo', 'Delhi', 'Mumbai', 4500);
+INSERT INTO flights VALUES (3, 'SpiceJet', 'Delhi', 'Bangalore', 6000);
+INSERT INTO flights VALUES (4, 'Air India', 'Delhi', 'Bangalore', 5500);
+INSERT INTO flights VALUES (5, 'IndiGo', 'Delhi', 'Mumbai', 4800);
+INSERT INTO flights VALUES (6, 'SpiceJet', 'Delhi', 'Mumbai', 4700);
+
+6.Find the number of flights from Delhi grouped by destination.
+A: select count(*),airline from flights group by destination;
+
+7.Find the average price of flights grouped by destination.
+A : select avg(price),destination from flights group by destination;
+
+8.Find destinations where the number of flights > 2 (use HAVING).
+A: select count(destination),destination from flights group by destination having count(destination)>2;
+
+9.Find airlines and count how many flights each airline operates from Delhi.
+A:select airline,count(*) from flights where source='Delhi' group by airline;
+
+10.Find destinations where the average price of flights > 5000 (use HAVING).
+A: select destination,avg(price) from flights group by destination having avg(price)>5000;
